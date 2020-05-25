@@ -2,9 +2,11 @@ import socket
 import select
 from _thread import *
 import sys
-  
+
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+
+
 
 if len(sys.argv) != 3: 
     print("Correct usage: script, IP address, port number")
@@ -16,7 +18,7 @@ server.bind((IP_address, Port))
 server.listen(100) 
 list_of_clients = [] 
 def clientthread(conn, addr): 
-    conn.send("Welcome to this chatroom!") 
+    conn.send(b"Welcome to this chatroom!") 
     while True: 
             try: 
                 message = conn.recv(2048) 
