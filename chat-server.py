@@ -1,7 +1,7 @@
 import socket
 
 host = socket.gethostname()
-port = 5420
+port = 5429
 s = socket.socket()
 s.bind((host,port))
 s.listen(3)
@@ -13,7 +13,7 @@ print("Connected : ", addr)
 while True:
 	data = conn.recv(1024)
 	data = data.decode('utf-8')
-	d = str(sum([ int(x) for x in data.split(',')]))
+	d = str(sum([int(x.strip()) for x in data.split(",")]))
 
 
 	if not data: break
